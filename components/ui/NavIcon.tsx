@@ -1,12 +1,11 @@
-import { Octicons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import React, { useEffect, useState } from "react";
-import { View } from "react-native";
+import { View, Text } from "react-native";
+import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, {
-  useAnimatedProps,
   useAnimatedStyle,
   useSharedValue,
   withSpring,
-  withTiming,
 } from "react-native-reanimated";
 
 interface NavIconProps {
@@ -14,42 +13,34 @@ interface NavIconProps {
   size: number;
   color: string;
   focused: boolean;
+  title: string;
 }
 
-const Square = ({ size }: any) => {
-  return <View style={{ backgroundColor: "black" }}></View>;
-};
+export function NavIcon({ name, size, color, focused, title }: NavIconProps) {
+  const scaleDownAnimation = useSharedValue(1);
 
-const AnimatedIcon = Animated.createAnimatedComponent(Octicons);
+  const scaleHandler = Gesture.Tap()
+    .onBegin(() => {
+      "worklet";
+      scaleDownAnimation.value = withSpring(0.8);
+    })
+    .onFinalize(() => {
+      "worklet";
+      scaleDownAnimation.value = withSpring(1);
+    });
 
-export function NavIcon({
-  name,
-  size: initSize,
-  color,
-  focused: focusedProp,
-}: NavIconProps) {
-  const size = useSharedValue(initSize);
-  const focused = useSharedValue(focusedProp);
-
-  const animatedProps = useAnimatedProps(() => {
-    return {
-      size: withSpring(size.value),
-    };
-  });
-
-  useEffect(() => {
-    if (focused) {
-      size.value = size.value + 10;
-    } else {
-      size.value = initSize;
-    }
-  }, [focused]);
-
-  useEffect(() => {
-    focused.value = focusedProp;
-  }, [focusedProp]);
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: scaleDownAnimation.value }],
+  }));
 
   return (
-    <AnimatedIcon name={name} color={color} animatedProps={animatedProps} />
+    <GestureDetector gesture={scaleHandler}>
+      <Animated.View style={animatedStyle}>
+        <View style={{ flex: 1 }}>
+          <Ionicons name={name} color={color} size={size} />
+          <Text style={{fontSize: 20, color: 'black'}}>{title}</Text>
+        </View>
+      </Animated.View>
+    </GestureDetector>
   );
 }

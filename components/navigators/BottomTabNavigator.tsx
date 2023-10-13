@@ -10,32 +10,26 @@ const Tab = createBottomTabNavigator();
 
 export function BottomTabNavigator() {
   return (
-    <Tab.Navigator screenOptions={{ headerShown: false }}>
+    <Tab.Navigator screenOptions={{ headerShown: false, tabBarShowLabel: false }}>
       <Tab.Screen
         name="LearnNavigator"
         component={LearnNavigator}
         options={{
-          title: "Learn",
-          tabBarLabel: "Learn",
-          tabBarIcon: (props) => <NavIcon name="book" {...props} />,
+          tabBarIcon: (props) => <NavIcon name="book" title="Learn" {...props} />,
         }}
       />
       <Tab.Screen
         name="PlayNavigator"
         component={PlayNavigator}
         options={{
-          title: "Play",
-          tabBarLabel: "Play",
-          tabBarIcon: (props) => <NavIcon name="rocket" {...props} />,
+          tabBarIcon: (props) => <NavIcon name="rocket" title="Play" {...props} />,
         }}
       />
       <Tab.Screen
         name="ProfileNavigator"
         component={ProfileNavigator}
         options={{
-          title: "Profile",
-          tabBarLabel: "Profile",
-          tabBarIcon: (props) => <NavIcon name="person" {...props} />,
+          tabBarIcon: (props) => <NavIcon name="person" title="Profile" {...props} />,
         }}
       />
     </Tab.Navigator>
