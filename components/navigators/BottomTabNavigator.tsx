@@ -1,6 +1,5 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { LearnScreen, PlayScreen, ProfileScreen } from "../../screens";
 import { ProfileNavigator } from "./ProfileNavigator";
 import { PlayNavigator } from "./PlayNavigator";
 import { LearnNavigator } from "./LearnNavigator";
