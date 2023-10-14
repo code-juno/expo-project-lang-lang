@@ -23,11 +23,16 @@ export function NavIcon({ name, size, color, focused, title }: NavIconProps) {
   const scaleHandler = Gesture.Tap()
     .onBegin(() => {
       "worklet";
-      if(!focused) scaleDownAnimation.value = withSpring(0.6);
+      if(!focused) scaleDownAnimation.value = 0.8;
     })
     .onFinalize(() => {
       "worklet";
-      scaleDownAnimation.value = withSpring(1);
+      scaleDownAnimation.value = withSpring(1, {
+        damping: 10,
+        mass: 1,
+        stiffness: 1000,
+        velocity: 2,
+      });
     });
 
   const animatedStyle = useAnimatedStyle(() => ({
