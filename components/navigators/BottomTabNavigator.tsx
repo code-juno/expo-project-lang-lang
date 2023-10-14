@@ -3,14 +3,14 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { ProfileNavigator } from "./ProfileNavigator";
 import { PlayNavigator } from "./PlayNavigator";
 import { LearnNavigator } from "./LearnNavigator";
-import { Ionicons } from "@expo/vector-icons";
-import { NavIcon } from "../ui";
+
+import { BottomTabBar, NavIcon } from "../ui";
 
 const Tab = createBottomTabNavigator();
 
 export function BottomTabNavigator() {
   return (
-    <Tab.Navigator screenOptions={{ headerShown: false, tabBarShowLabel: false }}>
+    <Tab.Navigator screenOptions={{ headerShown: false, tabBarShowLabel: false }} tabBar={(props) => <BottomTabBar {...props} />}>
       <Tab.Screen
         name="LearnNavigator"
         component={LearnNavigator}

@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { BottomTabNavigator } from "./components/navigators";
@@ -9,10 +9,12 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <NavigationContainer>
-        <BottomTabNavigator />
-      </NavigationContainer>
-    </GestureHandlerRootView>
+    <SafeAreaView style={{ flex: 1 }}>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <NavigationContainer>
+          <BottomTabNavigator />
+        </NavigationContainer>
+      </GestureHandlerRootView>
+    </SafeAreaView>
   );
 }
