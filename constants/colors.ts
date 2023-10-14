@@ -12,6 +12,11 @@ export const uiColors = {
     active: globalColors.primary,
     inactive: globalColors.neutral,
   },
+  background: {
+    learn: 'orange',
+    play: 'purple',
+    profile: 'green'
+  }
 }
 
 export const lightTheme = {

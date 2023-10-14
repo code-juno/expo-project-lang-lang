@@ -1,1 +1,5 @@
 export { BottomTabNavigator } from './BottomTabNavigator'
+export { AppNavigator } from './AppNavigator'
+export { LearnNavigator } from './LearnNavigator'
+export { PlayNavigator } from './PlayNavigator'
+export { ProfileNavigator } from './ProfileNavigator'
