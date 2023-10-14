@@ -36,7 +36,7 @@ export function NavIcon({ name, size, color, focused, title }: NavIconProps) {
     width: '100%'
 
   }));
-  const cColor = !!color ? color : uiColors.tabIconInactive;
+  const cColor = !!color ? color : uiColors.bottomTab.inactive;
 
   return (
     <GestureDetector gesture={scaleHandler}>

@@ -16,8 +16,8 @@ export function BottomTabBar({
 
         const isFocused = state.index === index;
         const color = isFocused
-          ? (options?.tabBarActiveTintColor ?? uiColors.tabIconActive)
-          : (options?.tabBarInactiveTintColor ?? uiColors.tabIconInactive);
+          ? (options?.tabBarActiveTintColor ?? uiColors.bottomTab.active)
+          : (options?.tabBarInactiveTintColor ?? uiColors.bottomTab.inactive);
 
         const onPress = () => {
           const event = navigation.emit({
@@ -27,7 +27,6 @@ export function BottomTabBar({
           });
 
           if (!isFocused && !event.defaultPrevented) {
-            // The `merge: true` option makes sure that the params inside the tab screen are preserved
             navigation.navigate(route.name);
           }
         };

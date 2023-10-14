@@ -1,12 +1,18 @@
 import React from "react";
-import { View, Text } from "react-native";
-import { NavIcon } from "../../components/ui";
+import { View, Text, StyleSheet } from "react-native";
+import { uiColors } from "../../constants/colors";
 
 export function LearnScreen() {
   return (
-    <View>
+    <View style={styles.screen}>
       <Text>Learn</Text>
-      <NavIcon name="person" size={25} color={""} focused={true} />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+  }
+}
+)
