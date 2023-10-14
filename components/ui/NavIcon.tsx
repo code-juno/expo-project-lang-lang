@@ -7,6 +7,7 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from "react-native-reanimated";
+import { uiColors } from "../../constants/colors";
 
 interface NavIconProps {
   name: any;
@@ -22,7 +23,7 @@ export function NavIcon({ name, size, color, focused, title }: NavIconProps) {
   const scaleHandler = Gesture.Tap()
     .onBegin(() => {
       "worklet";
-      if(!focused) scaleDownAnimation.value = (withSpring(0.8));
+      if(!focused) scaleDownAnimation.value = withSpring(0.6);
     })
     .onFinalize(() => {
       "worklet";
@@ -35,14 +36,14 @@ export function NavIcon({ name, size, color, focused, title }: NavIconProps) {
     width: '100%'
 
   }));
-  const cColor = !!color ? color : "green";
+  const cColor = !!color ? color : uiColors.tabIconInactive;
 
   return (
     <GestureDetector gesture={scaleHandler}>
       <Animated.View style={animatedStyle}>
         <View style={styles.tabIconContainer}>
           <Ionicons name={name} color={cColor} size={size} />
-          <Text style={{ fontSize: 12, color: cColor }}>{title}</Text>
+          <Text style={[styles.tabIconText, {color: cColor}]}>{title}</Text>
         </View>
       </Animated.View>
     </GestureDetector>
@@ -50,5 +51,6 @@ export function NavIcon({ name, size, color, focused, title }: NavIconProps) {
 }
 
 const styles = StyleSheet.create({
-  tabIconContainer: {flex: 1, alignItems: 'center', justifyContent: 'center' }
+  tabIconContainer: {flex: 1, alignItems: 'center', justifyContent: 'flex-start' },
+  tabIconText: { fontSize: 12 }
 })

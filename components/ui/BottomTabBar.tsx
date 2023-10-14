@@ -1,21 +1,27 @@
-import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
-import React from 'react'
-import { View, Text, TouchableOpacity, StyleSheet, TouchableWithoutFeedback } from 'react-native';
-import { NavIcon } from './NavIcon';
+import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
+import React from "react";
+import { View, StyleSheet, TouchableWithoutFeedback } from "react-native";
+import { BOTTOM_TAB_HEIGHT, BOTTOM_TAB_ICON_SIZE } from "../../constants/sizes";
+import { uiColors } from "../../constants/colors";
 
-
-export function BottomTabBar({ state, navigation, descriptors }: BottomTabBarProps) {
+export function BottomTabBar({
+  state,
+  navigation,
+  descriptors,
+}: BottomTabBarProps) {
   return (
     <View style={styles.tabBar}>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
 
         const isFocused = state.index === index;
-        const color = isFocused ? (options?.tabBarActiveTintColor ?? "red") : (options?.tabBarInactiveTintColor ?? "grey")
+        const color = isFocused
+          ? (options?.tabBarActiveTintColor ?? uiColors.tabIconActive)
+          : (options?.tabBarInactiveTintColor ?? uiColors.tabIconInactive);
 
         const onPress = () => {
           const event = navigation.emit({
-            type: 'tabPress',
+            type: "tabPress",
             target: route.key,
             canPreventDefault: true,
           });
@@ -28,7 +34,7 @@ export function BottomTabBar({ state, navigation, descriptors }: BottomTabBarPro
 
         const onLongPress = () => {
           navigation.emit({
-            type: 'tabLongPress',
+            type: "tabLongPress",
             target: route.key,
           });
         };
@@ -41,11 +47,14 @@ export function BottomTabBar({ state, navigation, descriptors }: BottomTabBarPro
             testID={options.tabBarTestID}
             onPress={onPress}
             onLongPress={onLongPress}
-            style={{ flex: 1, justifyContent: 'center', alignItems:'center' }}
             key={route.name}
           >
-            <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems:'center' }}>
-              {options.tabBarIcon?.({focused: isFocused, color: color, size: 30})}
+            <View style={styles.tabBarIconContainer}>
+              {options.tabBarIcon?.({
+                focused: isFocused,
+                color: color,
+                size: BOTTOM_TAB_ICON_SIZE,
+              })}
             </View>
           </TouchableWithoutFeedback>
         );
@@ -55,5 +64,11 @@ export function BottomTabBar({ state, navigation, descriptors }: BottomTabBarPro
 }
 
 const styles = StyleSheet.create({
-  tabBar: { flexDirection: 'row', height: 60 }
-})
+  tabBar: { flexDirection: "row", height: BOTTOM_TAB_HEIGHT },
+  tabBarIconContainer: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    alignItems: "center",
+  },
+});
