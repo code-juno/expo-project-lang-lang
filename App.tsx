@@ -1,21 +1,20 @@
 import React from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { BottomTabNavigator } from "./components/navigators";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { lightTheme } from "./constants/colors";
-
-const Stack = createNativeStackNavigator();
+import { AppBackground } from "./components/ui/AppBackground";
 
 export default function App() {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaProvider>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <NavigationContainer theme={lightTheme}>
+          <AppBackground />
           <BottomTabNavigator />
         </NavigationContainer>
       </GestureHandlerRootView>
-    </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
