@@ -4,6 +4,7 @@ import { Button, View } from 'react-native';
 
 export function LanguageSelector() {
   const { i18n } = useTranslation();
+  
   const changeLanguage = (locale: string) => {
     i18n.changeLanguage(locale);
   };
