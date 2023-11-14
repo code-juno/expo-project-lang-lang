@@ -1,0 +1,1 @@
+export { Swiping } from "./Swiping";

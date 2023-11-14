@@ -4,7 +4,6 @@ import Animated, {
   interpolateColor,
   useAnimatedStyle,
   useDerivedValue,
-  useSharedValue,
   withTiming,
 } from "react-native-reanimated";
 import { globalColors, uiColors } from "../../constants/colors";
